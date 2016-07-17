@@ -11,7 +11,7 @@ men_prices = []
 unisex_prices = []
 woman_prices = []
 
-with open('catalog_sample.csv') as f:
+with open('catalogs/catalog_sample.csv') as f:
     for line in f:
         product = line.split(',')
         if product \
@@ -34,7 +34,7 @@ with open('catalog_sample.csv') as f:
     print('Unisex average price: {:.2f} for {} items'.format(average(unisex_prices), len(unisex_prices)))
     print('Woman average price: {:.2f} for {} items'.format(average(woman_prices), len(woman_prices)))
 
-print('\n')
+print()
 # bigger catalog:
 
 infant_prices = []
@@ -43,7 +43,7 @@ men_prices = []
 unisex_prices = []
 woman_prices = []
 
-with open('catalog_full.csv') as f:
+with open('catalogs/catalog_full.csv') as f:
     for line in f:
         product = line.split(',')
         if product \

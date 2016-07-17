@@ -1,6 +1,6 @@
 total = 0
 count = 0
-with open('catalog_sample.csv') as f:
+with open('catalogs/catalog_sample.csv') as f:
     for line in f:
         product = line.split(',')
         if product \
@@ -14,7 +14,7 @@ with open('catalog_sample.csv') as f:
 
 # solution using a list of prices, then sum and len of list
 prices = []
-with open('catalog_full.csv') as f:
+with open('catalogs/catalog_full.csv') as f:
     for line in f:
         product = line.split(',')
         if product \
