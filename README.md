@@ -1,2 +1,3 @@
 # softuni-python
-SoftUni Python 3 Programming Homework
+SoftUni - Python 3 Programming open course 
+Homework
