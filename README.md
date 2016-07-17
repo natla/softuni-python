@@ -1,4 +1,5 @@
 # softuni-python
 SoftUni <br>
-homework for the Python 3 Programming course 
+Homework for the Python 3 Programming course <br>
+July 2016
 
