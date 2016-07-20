@@ -6,9 +6,6 @@ from datetime import timezone
 def convert_kelvin_to_celsius(deg_f):
     return "{:.2f} C".format(deg_f - 273.15)
 
-unix = datetime.timestamp(datetime.now())
-
-
 try:
     city = input("Въведете град в България: \n")
 
