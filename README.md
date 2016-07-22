@@ -1,2 +1,9 @@
-# SoftUni
-Homework for the **Python 3 Programming course** July 2016
+# SoftUni Python 3 Programming
+
+July 2016
+
+Homework for the course
+
+
+
+
