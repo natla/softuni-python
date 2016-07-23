@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-from datetime import timezone
+import pytz
 
 
 def convert_kelvin_to_celsius(deg_f):
@@ -22,7 +22,8 @@ try:
         raise Exception("Може да сте въвели невалидни данни. Опитайте пак!")
 
     unix = content['dt']
-    date = datetime.fromtimestamp(unix, tz=timezone.utc)
+    zone_sofia = pytz.timezone("Europe/Sofia")
+    date = datetime.fromtimestamp(unix, tz=zone_sofia)  # we set the timezone to UTC+02:00
     date = date.strftime("%d.%m.%Y %H:%M")
 
     main_info = content['main']
