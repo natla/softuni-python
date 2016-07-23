@@ -9,7 +9,7 @@ def convert_kelvin_to_celsius(deg_f):
 try:
     city = input("Въведете град в България: \n")
 
-    url = "http://api.openweathermap.org/data/2.5/weather/?q=" + city + ",bg&appid=965acdac1ae64cf06761bb563ad34d96"
+    url = "http://api.openweathermap.org/data/2.5/weather/?q=" + city + ",bg&appid=c1d344dc9eb1db61f225488045d115be"
 
     print('...получаваме информация за времето...')
     print()
