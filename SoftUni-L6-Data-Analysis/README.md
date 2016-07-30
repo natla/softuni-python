@@ -56,7 +56,7 @@ $ python3    analyze.py   catalog.csv   sales-10K.csv
 
 Примерни редове от файла с каталога:
 
-```python
+```
 "538352","TYGUN II","BLACK/RUNNINWHT","FOOTWEAR","BOXING","SHOES","SHOES (LOW)","Men"
 "42259","M TEAM TEE","WHITE/DARKNAVY","TEXTILES","TENNIS","T-SHIRTS","T-SHIRT (SHORT SLEEVE)","Men"
 "562319","NOVA WALK 06","DARONX/METSIL/DSHALE","FOOTWEAR","WALKING","SHOES","SHOES (LOW)","Men"
@@ -77,7 +77,7 @@ $ python3    analyze.py   catalog.csv   sales-10K.csv
 
 Примерни редове от файл с продажби:
 
-```python
+```
 "561712","ES","Murcia","2015-12-11T17:14:05+01:00",43.21
 "K81938","FR","Nantes","2016-01-14T20:58:38+01:00",36.57
 "41975","IT","Catania","2016-01-12T10:57:50+01:00",409.58
