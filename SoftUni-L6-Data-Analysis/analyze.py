@@ -1,4 +1,4 @@
-# Задача: 3. Анализ на данни от верига магазини - using sysargv
+# Задача: 3. Анализ на данни от верига магазини - using sys.argv
 
 import sys
 import csv
@@ -111,5 +111,3 @@ try:
 
 except Exception as e:
     print('Invalid data:', e)
-
-
