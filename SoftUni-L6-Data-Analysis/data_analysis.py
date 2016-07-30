@@ -40,7 +40,7 @@ def print_values(sales_array: list, sales_dict: dict):
 
 
 try:
-    with open('sales-analysis-assignment-all/catalog.csv', encoding='utf-8') as f:
+    with open('sales-analysis/catalog.csv', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             if len(row) == 8:
@@ -51,7 +51,7 @@ try:
                 else:
                     category_dict[product_category].append(product_id)
 
-    with open('sales-analysis-assignment-all/sales-10K.csv', encoding='utf-8') as p:
+    with open('sales-analysis/sales-10K.csv', encoding='utf-8') as p:
         reader = csv.reader(p)
         for row in reader:
             if len(row) == 5:
