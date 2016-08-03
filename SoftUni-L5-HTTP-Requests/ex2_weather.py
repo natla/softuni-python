@@ -26,7 +26,7 @@ try:
     wind = content['wind']
 
     print("Информация към", date)
-    print("Температура:", "{}°C".format(main_info['temp']))
+    print("Температура:", "{:.2f}°C".format(main_info['temp']))
     print("Налягане:", main_info['pressure'])
     print("Влажност:", "{}%".format(main_info['humidity']))
     print("Вятър:", "{} м/с".format(wind['speed']))
