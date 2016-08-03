@@ -2,14 +2,10 @@ import requests
 from datetime import datetime
 import pytz
 
-
-def convert_kelvin_to_celsius(deg_f):
-    return "{:.2f} C".format(deg_f - 273.15)
-
 try:
     city = input("Въведете град в България: \n")
 
-    url = "http://api.openweathermap.org/data/2.5/weather/?q=" + city + ",bg&appid=c1d344dc9eb1db61f225488045d115be"
+    url = "http://api.openweathermap.org/data/2.5/weather/?q=" + city + ",bg&units=metric&appid=c1d344dc9eb1db61f225488045d115be"
 
     print('...получаваме информация за времето...')
     print()
@@ -30,7 +26,7 @@ try:
     wind = content['wind']
 
     print("Информация към", date)
-    print("Температура:", convert_kelvin_to_celsius(main_info['temp']))
+    print("Температура:", "{}°C".format(main_info['temp']))
     print("Налягане:", main_info['pressure'])
     print("Влажност:", "{}%".format(main_info['humidity']))
     print("Вятър:", "{} м/с".format(wind['speed']))
