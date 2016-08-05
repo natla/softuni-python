@@ -4,19 +4,19 @@ import csv
 import iso8601
 from datetime import datetime, timezone
 
-count = 0
 total = 0
 dates = []
 category_dict = {}
 category_sales = {}
-sales_by_category = []
 city_sales = {}
-sales_by_city = []
 hour_sales = {}
-sales_by_hour = []
 
 
 def add_to_dict(sales_dict, keys, values):
+    """
+    function for creating dictionaries based on product categories, cities and dates,
+    and adding the total of sales for each of them
+    """
     if keys not in sales_dict:
         sales_dict[keys] = values
     else:
@@ -24,19 +24,21 @@ def add_to_dict(sales_dict, keys, values):
     return sales_dict
 
 
-def append_top_items(sales_dict: dict, sales_array: list):
-    for keys, values in sales_dict.items():
-        sales_array.append(values)
-    sales_array.sort()
-    top_array = sales_array[:-6:-1]
-    return top_array
+def append_top_items(sales_dict: dict):
+    """
+    function for finding the top 5 categories, cities and hours based on the total of sales
+    """
+    sales_array = [values for keys, values in sales_dict.items()]
+    sales_array.sort(reverse=True)
+    return sales_array[:5]
 
 
 def print_values(sales_array: list, sales_dict: dict):
+    """
+    formatted printing of the top 5 
+    """
     for item in sales_array:
-        for keys, values in sales_dict.items():
-            if values == item:
-                print('\t {} {:.2f} €'.format(keys, item))
+        print("".join(["\t {} {:.2f} €".format(keys, values) for keys, values in sales_dict.items() if values == item]))
 
 
 try:
@@ -61,44 +63,48 @@ try:
                 date_norm = date.astimezone(timezone.utc)  # - can be used in place of 'date'
                 dates.append(date)
                 sales_sum = float(row[-1])
-                count += 1
                 total += sales_sum
-                average = total / count
                 for key, value in category_dict.items():
                     if product_id2 in value:
                         add_to_dict(category_sales, key, sales_sum)
                 add_to_dict(city_sales, city, sales_sum)
                 add_to_dict(hour_sales, date, sales_sum)
 
+        count = len(dates)
+        average = total / count
+
         dates.sort()
         start_date = dates[0]
         end_date = dates[-1]
 
-        top5_categories = append_top_items(category_sales, sales_by_category)
+        top5_categories = append_top_items(category_sales)
 
-        top5_cities = append_top_items(city_sales, sales_by_city)
+        top5_cities = append_top_items(city_sales)
 
-        top5_hours = append_top_items(hour_sales, sales_by_hour)
+        top5_hours = append_top_items(hour_sales)
 
-    print()
-    print('Обобщение')
-    print('-' * len('Обобщение'))
-    print('\tОбщ брой продажби: {}'.format(count))
-    print('\tОбщо сума продажби: {:.2f} €'.format(total))
-    print('\tСредна цена на продажба: {:.2f} €'.format(average))
-    print('\tНачало на период на данните: {}'.format(start_date.isoformat()))
-    print('\tКрай на период на данните: {}'.format(end_date.isoformat()))
-    print()
-    print('Сума на продажби по категории (top 5)')
-    print('-' * 29)
+    print("""
+Обобщение
+---------
+     Общ брой продажби: {}
+     Общо сума продажби: {:.2f} €
+     Средна цена на продажба: {:.2f} €
+     Начало на период на данните: {}
+     Край на период на данните: {}
+
+Сума на продажби по категории (top 5)
+-----------------------------"""
+          .format(count, total, average, start_date.isoformat(), end_date.isoformat()))
     print_values(top5_categories, category_sales)
-    print()
-    print('Сума на продажби по градове (top 5)')
-    print('-' * 29)
+
+    print("""
+Сума на продажби по градове (top 5)
+-----------------------------""")
     print_values(top5_cities, city_sales)
-    print()
-    print('Сума на продажби по час (top 5)')
-    print('-' * 29)
+
+    print("""
+Сума на продажби по час (top 5)
+-----------------------------""")
     print_values(top5_hours, hour_sales)
 
 except Exception as e:
