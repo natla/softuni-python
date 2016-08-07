@@ -19,6 +19,50 @@ KEY_TS = 'ts'
 KEY_PRICE = 'price'
 
 
+def main():
+    catalog = load_catalog(CATALOG_FILENAME)
+
+    total_count = 0
+    total_amount = 0
+    min_timestamp = None
+    max_timestamp = None
+
+    load_sales_generator_object = load_sales(SALES_FILENAME)
+    for sale in load_sales_generator_object:
+        total_amount += sale[KEY_PRICE]
+        total_count += 1
+        ts = sale[KEY_TS]
+
+        if min_timestamp is None or ts < min_timestamp:
+            min_timestamp = ts
+        if max_timestamp is None or ts > max_timestamp:
+            max_timestamp = ts
+
+    print("""
+Обобщение
+---------
+    Общ брой продажби: {total_count}
+    Общо сума продажби: {total_amount:.2f} €
+    Средна цена на продажба: {average_price:.2f} €
+    Начало на период на данните: {min_ts}
+    Край на период на данните: {max_ts}""".format(
+        total_count=total_count,
+        total_amount=total_amount,
+        average_price=total_amount / total_count if total_count else None,
+        min_ts=min_timestamp.isoformat(),
+        max_ts=max_timestamp.isoformat(),
+    ))
+
+    load_sales_generator_object = load_sales(SALES_FILENAME)
+    print_top_by_category(load_sales_generator_object, catalog)
+
+    load_sales_generator_object = load_sales(SALES_FILENAME)
+    print_top_by_cities(load_sales_generator_object)
+
+    load_sales_generator_object = load_sales(SALES_FILENAME)
+    print_top_by_hour(load_sales_generator_object)
+
+
 def load_catalog(filename: str) -> dict:
     result = {}
     with open(filename, 'r', encoding='utf-8') as f:
@@ -82,7 +126,6 @@ def print_top_by_cities(sales):
         amounts_by_city_sorted.append((total_amount, city_name))
 
     amounts_by_city_sorted.sort(reverse=True)
-    print(amounts_by_city_sorted)
 
     print("""
 Сума на продажби по градове (top 5)
@@ -113,49 +156,6 @@ def print_top_by_hour(sales):
     for total_amount, hour in amounts_by_hour_sorted[:5]:
         print("    {}: {:.2f} €".format(hour, total_amount))
 
-
-def main():
-    catalog = load_catalog(CATALOG_FILENAME)
-
-    total_count = 0
-    total_amount = 0
-    min_timestamp = None
-    max_timestamp = None
-
-    load_sales_generator_object = load_sales(SALES_FILENAME)
-    for sale in load_sales_generator_object:
-        total_amount += sale[KEY_PRICE]
-        total_count += 1
-        ts = sale[KEY_TS]
-
-        if min_timestamp is None or ts < min_timestamp:
-            min_timestamp = ts
-        if max_timestamp is None or ts > max_timestamp:
-            max_timestamp = ts
-
-    print("""
-Обобщение
----------
-    Общ брой продажби: {total_count}
-    Общо сума продажби: {total_amount:.2f} €
-    Средна цена на продажба: {average_price:.2f} €
-    Начало на период на данните: {min_ts}
-    Край на период на данните: {max_ts}""".format(
-        total_count=total_count,
-        total_amount=total_amount,
-        average_price=total_amount / total_count if total_count else None,
-        min_ts=min_timestamp.isoformat(),
-        max_ts=max_timestamp.isoformat(),
-    ))
-
-    load_sales_generator_object = load_sales(SALES_FILENAME)
-    print_top_by_category(load_sales_generator_object, catalog)
-
-    load_sales_generator_object = load_sales(SALES_FILENAME)
-    print_top_by_cities(load_sales_generator_object)
-
-    load_sales_generator_object = load_sales(SALES_FILENAME)
-    print_top_by_hour(load_sales_generator_object)
 
 if __name__ == '__main__':
     main()
