@@ -22,7 +22,6 @@ class Square(Figure):
         super().draw(turtle)        
         left = self.center_x - self.side / 2
         down = self.center_y - self.side / 2
-
         self.jump_to(turtle, left, down)
         for _ in range(4):
             turtle.forward(self.side)
@@ -40,7 +39,6 @@ class Rectangle(Figure):
         super().draw(turtle)        
         left = self.center_x - self.width / 2
         down = self.center_y - self.height / 2
-
         self.jump_to(turtle, left, down)
         for _ in range(2):
             turtle.forward(self.width)
@@ -76,8 +74,7 @@ class RegularPolygon(Figure):
         self.num_sides = num_sides
 
     def draw(self, turtle):
-        super().draw(turtle)        
-
+        super().draw(turtle)
         self.jump_to(turtle, self.center_x, self.center_y - self.radius)
         turtle.circle(self.radius, steps=self.num_sides)
         self.jump_to(turtle, 0, 0)
