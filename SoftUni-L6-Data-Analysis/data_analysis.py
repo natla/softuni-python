@@ -28,18 +28,16 @@ def append_top_items(sales_dict: dict):
     """
     function for finding the top 5 categories, cities and hours based on the total of sales
     """
-    sales_array = [values for keys, values in sales_dict.items()]
+    sales_array = [(values, keys) for keys, values in sales_dict.items()]
     sales_array.sort(reverse=True)
     return sales_array[:5]
 
 
-def print_values(sales_array: list, sales_dict: dict):
+def print_values(sales_array: list):
     """
-    formatted printing of the top 5 
+    formatted printing of the top 5
     """
-    for item in sales_array:
-        print("".join(["\t {} {:.2f} €".format(keys, values) for keys, values in sales_dict.items() if values == item]))
-
+    print("\n".join(["\t{} {:.2f} €".format(keys, values) for values, keys in sales_array]))
 
 try:
     with open('sales-analysis/catalog.csv', encoding='utf-8') as f:
@@ -95,17 +93,18 @@ try:
 Сума на продажби по категории (top 5)
 -----------------------------"""
           .format(count, total, average, start_date.isoformat(), end_date.isoformat()))
-    print_values(top5_categories, category_sales)
+		  
+    print_values(top5_categories)
 
     print("""
 Сума на продажби по градове (top 5)
 -----------------------------""")
-    print_values(top5_cities, city_sales)
+    print_values(top5_cities)
 
     print("""
 Сума на продажби по час (top 5)
 -----------------------------""")
-    print_values(top5_hours, hour_sales)
+    print_values(top5_hours)
 
 except Exception as e:
     print('Invalid data:', e)
