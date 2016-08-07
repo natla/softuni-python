@@ -5,6 +5,6 @@
     {"type": "circle", "center_x": 0, "center_y": 0, "radius": 50, "color": "blue"},
     {"type": "circle", "center_x": 0, "center_y": 0, "radius": 100, "color": "red"},
     {"type": "pie", "center_x": 0, "center_y": 0, "radius": 100, "arg_degrees": 125, "color": "orange"},
-    {"type": "rectangle", "center_x": 0, "center_y": 0, "height": 400, "width": 200, "color": "purple"},
+    {"type": "rectangle", "center_x": 0, "center_y": 0, "height": 200, "width": 400, "color": "purple"},
     {"type": "reg_polygon", "center_x": 0, "center_y": 0, "radius": 100, "num_sides": 8, "color": "black"}
 ]

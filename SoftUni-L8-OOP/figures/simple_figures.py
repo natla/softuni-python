@@ -9,7 +9,7 @@ class Circle(Figure):
     def draw(self, turtle):
         super().draw(turtle)
         self.jump_to(turtle, self.center_x,
-                     self.center_y - self.radius) 
+                     self.center_y - self.radius)  # We want the turtle to keep (0,0) as its center during drawing;
         turtle.circle(self.radius)
         self.jump_to(turtle, 0, 0)
 
@@ -20,10 +20,9 @@ class Square(Figure):
         self.side = side
 
     def draw(self, turtle):
-        super().draw(turtle)
-        half_side = self.side / 2
-        left = self.center_x - half_side
-        down = self.center_y - half_side
+        super().draw(turtle)        
+        left = self.center_x - self.side / 2
+        down = self.center_y - self.side / 2
 
         self.jump_to(turtle, left, down)
         for _ in range(4):
@@ -39,11 +38,9 @@ class Rectangle(Figure):
         self.width = width
 
     def draw(self, turtle):
-        super().draw(turtle)
-        half_width = self.width / 2
-        half_height = self.height / 2
-        left = self.center_x - half_width
-        down = self.center_y - half_height
+        super().draw(turtle)        
+        left = self.center_x - self.width / 2
+        down = self.center_y - self.height / 2
 
         self.jump_to(turtle, left, down)
         for _ in range(2):
@@ -62,10 +59,13 @@ class Pie(Figure):
 
     def draw(self, turtle):
         super().draw(turtle)
-        self.jump_to(turtle, self.center_x,
-                     self.center_y - self.radius)
+        self.jump_to(turtle, self.center_x, self.center_y)
         turtle.begin_fill()
+        turtle.forward(self.radius)
+        turtle.left(90)
         turtle.circle(self.radius, extent=self.arg_degrees)
+        turtle.left(90)
+        turtle.forward(self.radius)
         turtle.end_fill()
         self.jump_to(turtle, 0, 0)
 
