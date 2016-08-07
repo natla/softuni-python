@@ -76,8 +76,7 @@ class RegularPolygon(Figure):
         self.num_sides = num_sides
 
     def draw(self, turtle):
-        super().draw(turtle)
-        angle = 360 / self.num_sides
+        super().draw(turtle)        
 
         self.jump_to(turtle, self.center_x, self.center_y - self.radius)
         turtle.circle(self.radius, steps=self.num_sides)

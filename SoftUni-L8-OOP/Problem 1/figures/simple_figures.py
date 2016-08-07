@@ -8,8 +8,7 @@ class Circle(Figure):
 
     def draw(self, turtle):
         super().draw(turtle)
-        self.jump_to(turtle, self.center_x,
-                     self.center_y - self.radius) 
+        self.jump_to(turtle, self.center_x, self.center_y - self.radius) 
         turtle.circle(self.radius)
         self.jump_to(turtle, 0, 0)
 
@@ -77,10 +76,8 @@ class RegularPolygon(Figure):
         self.num_sides = num_sides
 
     def draw(self, turtle):
-        super().draw(turtle)
-        angle = 360 / self.num_sides
+        super().draw(turtle)        
 
-        self.jump_to(turtle, self.center_x,
-                     self.center_y - self.radius)
+        self.jump_to(turtle, self.center_x, self.center_y - self.radius)
         turtle.circle(self.radius, steps=self.num_sides)
         self.jump_to(turtle, 0, 0)
