@@ -9,7 +9,7 @@ class Circle(Figure):
     def draw(self, turtle):
         super().draw(turtle)
         self.jump_to(turtle, self.center_x,
-                     self.center_y - self.radius)  # We want the turtle to keep (0,0) as its center during drawing;
+                     self.center_y - self.radius) 
         turtle.circle(self.radius)
         self.jump_to(turtle, 0, 0)
 

@@ -1,4 +1,3 @@
-import os
 import json
 import turtle
 
@@ -7,7 +6,7 @@ from figures.simple_figures import Circle, Square, Rectangle, Pie, RegularPolygo
 
 def main():
     try:
-        input_data = load_input_data("figures_simple2.json")
+        input_data = load_input_data("figures_simple.json")
         figures = create_figures(input_data)
         draw_figures(figures)
     except Exception as e:
@@ -28,7 +27,7 @@ FIGURE_TYPES = {
 }
 
 
-def create_figures(input_data: dict) -> list:  # annotation, not necessary
+def create_figures(input_data: dict) -> list:
     result = []
     for f_info in input_data:
         figure_type = f_info['type']
